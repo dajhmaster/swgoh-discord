@@ -1,0 +1,2 @@
+# swgoh-discord
+Discord Bot
