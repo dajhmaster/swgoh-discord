@@ -75,7 +75,7 @@ exports.shutdown = async () => {
 
 exports.help = {
   name: "test",
-  category: "Miscelaneous",
-  description: "Testing testing 1 2 1 2. If you see this in a repo, I dun fucked up.",
+  category: "Miscellaneous",
+  description: "Testing testing 1 2 1 2. If you see this in a repo, I dun messed up.",
   usage: "test"
 };

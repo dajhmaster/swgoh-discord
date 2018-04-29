@@ -184,9 +184,9 @@ module.exports = (client) => {
   });
 
   app.get("/dashboard", checkAuth, (req, res) => {
-    const perms = Discord.EvaluatedPermissions;
+    //console.log(JSON.stringify(req));
+    const perms = Discord.Permissions;  // EvaluatedPermissions
     res.render(path.resolve(`${templateDir}${path.sep}dashboard.ejs`), {
-      perms: perms,
       bot: client,
       user: req.user,
       auth: true

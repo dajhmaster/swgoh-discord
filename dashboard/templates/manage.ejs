@@ -1,20 +1,27 @@
 <%- include('blocks/header', {bot:bot, user: user, auth: auth}) %>
-<div class="jumbotron">
-    <div class="col-sm-8 mx-auto">
-      <h1><%= guild.name %></h1>
-      <div class="row">
-        <div class="col">
-          <i class="fa fa-user" aria-hidden="true"></i> <%= `${guild.memberCount}` %> Members
-          ( <i class="fa fa-android" aria-hidden="true"></i> <%= `${guild.members.filter(m=>m.user.bot).size}` %> Bots )
-        </div>
-        <div class="col">
-          <i class="fa fa-users" aria-hidden="true"></i> <%= `${guild.roles.size} Roles` %>
-        </div>
-        <div class="col">
-          Channels : <i class="fa fa-hashtag" aria-hidden="true"></i> <%= `${guild.channels.filter(c=>c.type==='text').size}`%> 
-          <i class="fa fa-microphone" aria-hidden="true"></i> <%= `${guild.channels.filter(c=>c.type==='voice').size}`%> 
-        </div>
-      </div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card mb-3">
+      <h2 class="card-header"><%= guild.name %></h2>
+      <!-- <div class="row"> -->
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fa fa-users" aria-hidden="true"></i> Roles</span><span class="badge badge-primary badge-pill"><%= `${guild.roles.size}` %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fa fa-user" aria-hidden="true"></i> Members</span><span class="badge badge-primary badge-pill"><%= `${guild.memberCount}` %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fa fa-android" aria-hidden="true"></i> Bots</span><span class="badge badge-primary badge-pill"><%= `${guild.members.filter(m=>m.user.bot).size}` %></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fa fa-hashtag" aria-hidden="true"></i> Text Channels</span><span class="badge badge-primary badge-pill"><%= `${guild.channels.filter(c=>c.type==='text').size}`%></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fa fa-microphone" aria-hidden="true"></i> Voice Channels</span><span class="badge badge-primary badge-pill"><%= `${guild.channels.filter(c=>c.type==='voice').size}`%></span>
+          </li>
+        </ul>
+      <div class="card-footer text-muted">Server Stats</div>
     </div>
     <div class="col-sm-8 mx-auto" style="margin-top: 15px;">
       <p>
@@ -24,19 +31,21 @@
     </div>
   </div>
 
-<h1 class="display-4">Settings</h1>
-
-<form method="post">
-  <% const settings = bot.settings.get(guild.id); %>
-  <% for (const key in settings) { %>
-  <div class="form-group">
-    <label for="<%= key %>"><%= key %></label>
-    <input type="text" class="form-control" id="<%= key %>" name="<%= key %>" placeholder="Enter <%= key %>" value="<%= settings[key] %>">
-  </div>
-  <% } %>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+<div class="col-lg-6">
+  <h1 class="display-4">Settings</h1>
+  
+  <form method="post">
+    <% const settings = bot.settings.get(guild.id); %>
+    <% for (const key in settings) { %>
+    <div class="form-group">
+      <label for="<%= key %>"><%= key %></label>
+      <input type="text" class="form-control" id="<%= key %>" name="<%= key %>" placeholder="Enter <%= key %>" value="<%= settings[key] %>">
+    </div>
+    <% } %>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
 
 
 

@@ -3,7 +3,7 @@ const { Attachment } = require("discord.js");
 
 const animals = {
   "cat": {
-    fetch: async () => fetch ("http://random.cat/meow"),
+    fetch: async () => fetch ("https://aws.random.cat/meow"),
     get: async (resp) => resp.body.file
   },
   "dog": {
@@ -26,8 +26,7 @@ exports.run = async (client, message, cmd, args, level) => { // eslint-disable-l
   const api = animals[args[0]];
   try {
     if (!api) {
-      const resp = await fetch(`http://loremflickr.com/400/300/${args[0]}`);
-      console.log(typeof resp.body);
+      const resp = await fetch(`https://loremflickr.com/400/300/${args[0]}`);
       return message.channel.send(new Attachment(resp.body, `random${args[0]}.jpg`));
     }
   } catch (e) {
